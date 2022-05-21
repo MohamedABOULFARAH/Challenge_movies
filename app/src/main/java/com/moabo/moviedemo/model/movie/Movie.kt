@@ -1,35 +1,68 @@
 package com.moabo.moviedemo.model.movie
 
+import android.os.Parcelable
+import androidx.room.Entity
+import androidx.room.Ignore
+import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
+@Entity(tableName = "movie")
+@Parcelize
 data class Movie(
 
     @Expose
-    @SerializedName("adult"             ) var adult            : Boolean?       = null,
+    @SerializedName("id")
+    @PrimaryKey
+    var id : Int?,
+
     @Expose
-    @SerializedName("backdrop_path"     ) var backdropPath     : String?        = null,
+    @SerializedName("adult")
+    var adult : Boolean?,
+
     @Expose
-    @SerializedName("genre_ids"         ) var genreIds         : ArrayList<Int> = arrayListOf(),
+    @SerializedName("backdrop_path")
+    var backdropPath : String?,
+
+
     @Expose
-    @SerializedName("id"                ) var id               : Int?           = null,
+    @SerializedName("original_language")
+    var originalLanguage : String?,
+
     @Expose
-    @SerializedName("original_language" ) var originalLanguage : String?        = null,
+    @SerializedName("original_title")
+    var originalTitle : String?,
+
     @Expose
-    @SerializedName("original_title"    ) var originalTitle    : String?        = null,
+    @SerializedName("overview")
+    var overview : String?,
+
     @Expose
-    @SerializedName("overview"          ) var overview         : String?        = null,
+    @SerializedName("popularity")
+    var popularity : Double?,
+
     @Expose
-    @SerializedName("popularity"        ) var popularity       : Double?        = null,
+    @SerializedName("poster_path")
+    var posterPath : String?,
+
     @Expose
-    @SerializedName("poster_path"       ) var posterPath       : String?        = null,
+    @SerializedName("release_date")
+    var releaseDate : String?,
+
     @Expose
-    @SerializedName("release_date"      ) var releaseDate      : String?        = null,
+    @SerializedName("title")
+    var title : String?,
+
     @Expose
-    @SerializedName("title"             ) var title            : String?        = null,
+    @SerializedName("video")
+    var video : Boolean?,
+
     @Expose
-    @SerializedName("video"             ) var video            : Boolean?       = null,
+    @SerializedName("vote_average")
+    var voteAverage : Double?,
+
     @Expose
-    @SerializedName("vote_average"      ) var voteAverage      : Double?        = null,
-    @Expose
-    @SerializedName("vote_count"        ) var voteCount        : Int?           = null)
+    @SerializedName("vote_count")
+    var voteCount  : Int?
+): Parcelable

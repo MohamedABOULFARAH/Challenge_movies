@@ -1,4 +1,4 @@
-package com.moabo.moviedemo.di
+package com.moabo.moviedemo
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

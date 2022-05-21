@@ -3,6 +3,8 @@ package com.moabo.moviedemo.viewModel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.demo.Util.ApiState
+import com.moabo.moviedemo.model.MovieDao
+import com.moabo.moviedemo.model.movie.Movie
 import com.moabo.moviedemo.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,8 +16,10 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class TopRatedMoviesViewModel @Inject constructor(private val mainRepository: MainRepository) :
-    ViewModel() {
+class TopRatedMoviesViewModel @Inject constructor(
+    private val mainRepository: MainRepository,
+    private val movieDao: MovieDao,
+    ) : ViewModel() {
 
     private val _topRatedResultStateFlow: MutableStateFlow<ApiState> =
         MutableStateFlow(ApiState.Empty)
@@ -29,7 +33,19 @@ class TopRatedMoviesViewModel @Inject constructor(private val mainRepository: Ma
                 _topRatedResultStateFlow.value = ApiState.Failure(it)
             }
             .collect {
-                _topRatedResultStateFlow.value = ApiState.Success(it.results)
+                //_topRatedResultStateFlow.value = ApiState.Success(it.results)
+                insertMovie(it.results)
             }
+    }
+
+    private fun insertMovie(movies: ArrayList<Movie>) = viewModelScope.launch {
+       movies.forEach {
+           movieDao.insert(it)
+       }
+        getMovies()
+    }
+
+    private fun getMovies() = viewModelScope.launch {
+        _topRatedResultStateFlow.value = ApiState.Success(movieDao.getMovies())
     }
 }
