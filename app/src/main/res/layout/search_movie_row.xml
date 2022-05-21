@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/search_image_movie"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/search_title_movie"
+            android:contentDescription="@string/imagemovie"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/search_title_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/search_image_movie"
+            app:layout_constraintBottom_toTopOf="@+id/search_release_date_movie"
+            tools:text="@string/app_name"
+            style="@style/TextAppearance.Material3.BodyLarge"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/search_release_date_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/search_title_movie"
+            app:layout_constraintStart_toStartOf="@+id/search_title_movie"
+            tools:text="25/02/2022"
+            android:textSize="13sp"
+           />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/topRatedMoviesFragment">
+
+    <fragment
+        android:id="@+id/genreMovieFragment"
+        android:name="com.moabo.moviedemo.view.genreMovie.GenreMovieFragment"
+        android:label="fragment_genre_movie"
+        tools:layout="@layout/fragment_genre_movie">
+        <action
+            android:id="@+id/action_genreMovieFragment_to_searchMovieFragment"
+            app:destination="@id/searchMovieFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchMovieFragment"
+        android:name="com.moabo.moviedemo.view.searchMovie.SearchMovieFragment"
+        android:label="fragment_search_movie"
+        tools:layout="@layout/fragment_search_movie">
+        <action
+            android:id="@+id/action_searchMovieFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/hilt_MainActivity"
+        android:name="com.moabo.moviedemo.Hilt_MainActivity"
+        android:label="Hilt_MainActivity" />
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.moabo.moviedemo.view.detailMovie.MovieDetailFragment"
+        android:label="fragment_detail_movie"
+        tools:layout="@layout/fragment_detail_movie">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/topRatedMoviesFragment"
+        android:name="com.moabo.moviedemo.view.topRated.TopRatedMoviesFragment"
+        android:label="TopRatedMoviesFragment" >
+        <action
+            android:id="@+id/action_topRatedMoviesFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+</navigation>

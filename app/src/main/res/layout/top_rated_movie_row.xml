@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@color/white">
+
+    <ImageView
+        android:id="@+id/top_rated_image_movie"
+        android:layout_width="0dp"
+        android:layout_height="150dp"
+        android:contentDescription="@string/imagemovie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/background_movies" />
+
+    <TextView
+        android:id="@+id/top_rated_title_movie"
+        style="@style/TextAppearance.Material3.BodyLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:textSize="18sp"
+        android:gravity="center"
+        android:lines="2"
+        app:layout_constraintBottom_toTopOf="@+id/top_rated_release_date_movie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/top_rated_image_movie"
+        tools:text="@string/app_name" />
+
+    <ImageView
+        android:id="@+id/top_rated_image_release_date"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/image_movie_rating"
+        android:padding="3dp"
+        android:src="@drawable/calendar"
+        app:layout_constraintBottom_toTopOf="@+id/top_rated_image_rating"
+        app:layout_constraintStart_toStartOf="@+id/top_rated_title_movie"
+        app:layout_constraintTop_toBottomOf="@+id/top_rated_title_movie"
+        app:tint="@color/AvitoBlue" />
+
+    <TextView
+        android:id="@+id/top_rated_release_date_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/top_rated_image_release_date"
+        app:layout_constraintStart_toEndOf="@+id/top_rated_image_release_date"
+        app:layout_constraintTop_toTopOf="@+id/top_rated_image_release_date"
+        tools:text="25/02/2022" />
+
+    <ImageView
+        android:id="@+id/top_rated_image_rating"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginEnd="20dp"
+        android:contentDescription="@string/image_movie_rating"
+        android:src="@drawable/rating_star"
+        app:layout_constraintBottom_toTopOf="@+id/top_rated_image_views"
+        app:layout_constraintStart_toStartOf="@+id/top_rated_title_movie"
+        app:layout_constraintTop_toBottomOf="@+id/top_rated_release_date_movie" />
+
+    <TextView
+        android:id="@+id/top_rated_rating_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/top_rated_image_rating"
+        app:layout_constraintStart_toEndOf="@+id/top_rated_image_rating"
+        app:layout_constraintTop_toTopOf="@+id/top_rated_image_rating"
+        tools:text="9.1" />
+
+    <ImageView
+        android:id="@+id/top_rated_image_views"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:contentDescription="@string/image_movie_rating"
+        android:padding="2dp"
+        android:src="@drawable/eye"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/top_rated_title_movie"
+        app:layout_constraintTop_toBottomOf="@+id/top_rated_image_rating"
+        app:tint="@color/AvitoRed" />
+
+    <TextView
+        android:id="@+id/top_rated_views_movie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/top_rated_image_views"
+        app:layout_constraintStart_toEndOf="@+id/top_rated_image_views"
+        app:layout_constraintTop_toTopOf="@+id/top_rated_image_views"
+        tools:text="1996" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
