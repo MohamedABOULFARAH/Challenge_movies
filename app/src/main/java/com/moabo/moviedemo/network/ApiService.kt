@@ -1,6 +1,7 @@
 package com.moabo.moviedemo.network
 
 import com.moabo.moviedemo.model.genre.GenreMap
+import com.moabo.moviedemo.model.movie.Movie
 import com.moabo.moviedemo.model.movie.MovieDetail
 import com.moabo.moviedemo.model.rating.RatingRQ
 import com.moabo.moviedemo.model.rating.RatingRS
@@ -21,7 +22,7 @@ interface ApiService {
     suspend fun getSession(): SessionRS
 
     @GET("movie/{movie_id}")
-    suspend fun getMovieDetail(@Path("movie_id")movieId :Int): MovieDetail
+    suspend fun getMovieDetail(@Path("movie_id")movieId :Int): Movie
 
     @GET("movie/top_rated")
     suspend fun getTopRatedMovies(@Query("page")page :Int): TopRatedMap

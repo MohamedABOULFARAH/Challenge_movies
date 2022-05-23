@@ -1,6 +1,5 @@
-package com.moabo.moviedemo.view.topRated
+package com.moabo.moviedemo.view.favoriteMovies
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,11 +12,10 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.moabo.moviedemo.R
+import com.moabo.moviedemo.databinding.FragmentFavoriteMoviesBinding
+import com.moabo.moviedemo.model.movie.Movie
 import com.moabo.moviedemo.utils.ApiState
 import com.moabo.moviedemo.utils.showAlert
-import com.moabo.moviedemo.databinding.FragmentTopRatedMovieBinding
-import com.moabo.moviedemo.model.movie.Movie
 import com.moabo.moviedemo.view.searchMovie.SearchMovieAdapter
 import com.moabo.moviedemo.view.searchMovie.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,16 +25,17 @@ import java.util.*
 
 /**
  * A simple [Fragment] subclass.
- * Use the [TopRatedMoviesFragment.newInstance] factory method to
+ * Use the [FavoriteMoviesFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
 @AndroidEntryPoint
-class TopRatedMoviesFragment : Fragment() {
+class FavoriteMoviesFragment : Fragment() {
 
-    private lateinit var binding: FragmentTopRatedMovieBinding
-    private lateinit var topRatedMoviesAdapter: TopRatedAdapter
+    private lateinit var binding: FragmentFavoriteMoviesBinding
+    private lateinit var favoriteAdapter: FavoriteAdapter
     private lateinit var searchMovieAdapter: SearchMovieAdapter
-    private val topRatedViewModel: TopRatedMoviesViewModel by viewModels()
+    private lateinit var movieDetail: Movie
+    private val favoriteMoviesViewModel: FavoriteMoviesViewModel by viewModels()
     private val searchViewModel: SearchViewModel by viewModels()
     private lateinit var onMovieClicked: (movie: Movie) -> Unit
 
@@ -48,31 +47,27 @@ class TopRatedMoviesFragment : Fragment() {
     ): View {
 
         // Inflate the layout for this fragment
-        binding = FragmentTopRatedMovieBinding.inflate(inflater, container, false)
+        binding = FragmentFavoriteMoviesBinding.inflate(inflater, container, false)
         BindUI()
         BindUISearch()
+        binding.titleFavorie.text="Favorite"
         // Inflate the layout for this fragment
         return binding.root
     }
 
-    @SuppressLint("UseCompatLoadingForDrawables")
     fun BindUI() {
         onMovieClicked = {
             val movieDetailFragment =
-                TopRatedMoviesFragmentDirections.actionTopRatedMoviesFragmentToMovieDetailFragment(it,false)
+                FavoriteMoviesFragmentDirections.actionFavoriteMoviesFragmentToMovieDetailFragment(it,false)
             findNavController().navigate(movieDetailFragment)
         }
-        binding.topRatedImageFavorites.setOnClickListener {
-            val favoriteMoviesFragment =
-                TopRatedMoviesFragmentDirections.actionTopRatedMoviesFragmentToFavoriteMoviesFragment()
-            findNavController().navigate(favoriteMoviesFragment)
-        }
-        topRatedViewModel.getTopRatedResults(1)
 
-        initRecyclerviewTopRated()
+        favoriteMoviesViewModel.getFavoritesResults(1)
+
+        initRecyclerviewFavorite()
 
         lifecycleScope.launchWhenCreated {
-            topRatedViewModel.topRatedResultStateFlow.collect {
+            favoriteMoviesViewModel.favoritesResultStateFlow.collect {
                 when (it) {
                     is ApiState.Loading -> {
                         binding.recyclerview.isVisible = false
@@ -83,8 +78,7 @@ class TopRatedMoviesFragment : Fragment() {
                     }
                     is ApiState.Success -> {
                         binding.recyclerview.isVisible = true
-                        topRatedMoviesAdapter.setData(it.data as List<Movie>)
-                        // topRatedMoviesAdapter.notifyDataSetChanged()
+                        favoriteAdapter.setData(it.data as List<Movie>)
                     }
                     is ApiState.Empty -> {
                         binding.recyclerview.isVisible = false
@@ -95,27 +89,15 @@ class TopRatedMoviesFragment : Fragment() {
 
 
         }
-        binding.topRatedImageAlphaSort.setOnClickListener {
-                topRatedMoviesAdapter.orderListByTitle(sortAZ)
+        binding.favoritesImageAlphaSort.setOnClickListener {
+            favoriteAdapter.orderListByTitle(sortAZ)
                 sortAZ = !sortAZ
-            if (sortAZ) {
-                binding.topRatedImageAlphaSort.setImageDrawable(resources.getDrawable(R.drawable.filter_down,
-                    context?.theme))
-            } else {
-                binding.topRatedImageAlphaSort.setImageDrawable(resources.getDrawable(R.drawable.filter_up,
-                    context?.theme
-                ))
-            }
+
         }
 
-        binding.topRatedImageDateSort.setOnClickListener {
-                topRatedMoviesAdapter.orderListByDate(sortDateDesc)
+        binding.favoritesImageDateSort.setOnClickListener {
+            favoriteAdapter.orderListByDate(sortDateDesc)
                 sortDateDesc = !sortDateDesc
-            if (sortDateDesc) {
-                binding.topRatedImageDateSort.setBackgroundResource(R.drawable.ic_baseline_arrow_up);
-            } else {
-                binding.topRatedImageDateSort.setBackgroundResource(R.drawable.ic_baseline_arrow_down);
-            }
 
         }
 
@@ -125,7 +107,7 @@ class TopRatedMoviesFragment : Fragment() {
 
         onMovieClicked = {
             val movieDetailFragment =
-                TopRatedMoviesFragmentDirections.actionTopRatedMoviesFragmentToMovieDetailFragment(it,true)
+                FavoriteMoviesFragmentDirections.actionFavoriteMoviesFragmentToMovieDetailFragment(it,true)
             findNavController().navigate(movieDetailFragment)
         }
 
@@ -167,12 +149,12 @@ class TopRatedMoviesFragment : Fragment() {
 
         })
     }
-    private fun initRecyclerviewTopRated() {
-        topRatedMoviesAdapter = TopRatedAdapter(onMovieClicked)
+    private fun initRecyclerviewFavorite() {
+        favoriteAdapter = FavoriteAdapter(onMovieClicked)
         binding.recyclerview.apply {
             setHasFixedSize(true)
             layoutManager = GridLayoutManager(context, 2)
-            adapter = topRatedMoviesAdapter
+            adapter = favoriteAdapter
         }
 
     }

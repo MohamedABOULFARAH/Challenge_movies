@@ -11,11 +11,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.demo.Util.ApiState
-import com.example.demo.Util.showAlert
+import com.moabo.moviedemo.utils.ApiState
+import com.moabo.moviedemo.utils.showAlert
 import com.moabo.moviedemo.databinding.FragmentSearchMovieBinding
 import com.moabo.moviedemo.model.movie.Movie
-import com.moabo.moviedemo.viewModel.SearchViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.util.*
@@ -32,7 +31,7 @@ class SearchMovieFragment : Fragment() {
     private lateinit var binding: FragmentSearchMovieBinding
     private lateinit var searchMovieAdapter: SearchMovieAdapter
     private val searchViewModel: SearchViewModel by viewModels()
-    private lateinit var onMovieClicked: (movieId:Int) -> Unit
+    private lateinit var onMovieClicked: (movie:Movie) -> Unit
 
 
     override fun onCreateView(
@@ -50,7 +49,7 @@ class SearchMovieFragment : Fragment() {
     fun BindUI() {
 
         onMovieClicked = {
-            val movieDetail = SearchMovieFragmentDirections.actionSearchMovieFragmentToMovieDetailFragment(it)
+            val movieDetail = SearchMovieFragmentDirections.actionSearchMovieFragmentToMovieDetailFragment(it,true)
             findNavController().navigate(movieDetail)
         }
 

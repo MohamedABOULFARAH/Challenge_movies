@@ -57,6 +57,7 @@ object AppModule {
         app: Application,
         callback: MovieDatabase.Callback
     ) = Room.databaseBuilder(app, MovieDatabase::class.java, "movie_database")
+        .allowMainThreadQueries()
         .fallbackToDestructiveMigration()
         .addCallback(callback)
         .build()

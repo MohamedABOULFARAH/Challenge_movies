@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/topRatedMoviesFragment">
+    app:startDestination="@id/splashScreenFragment">
 
     <fragment
         android:id="@+id/genreMovieFragment"
@@ -32,9 +32,13 @@
         android:name="com.moabo.moviedemo.view.detailMovie.MovieDetailFragment"
         android:label="fragment_detail_movie"
         tools:layout="@layout/fragment_detail_movie">
+
         <argument
-            android:name="movieId"
-            app:argType="integer" />
+            android:name="movie"
+            app:argType="com.moabo.moviedemo.model.movie.Movie" />
+        <argument
+            android:name="refreshApi"
+            app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/topRatedMoviesFragment"
@@ -42,6 +46,26 @@
         android:label="TopRatedMoviesFragment" >
         <action
             android:id="@+id/action_topRatedMoviesFragment_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+        <action
+            android:id="@+id/action_topRatedMoviesFragment_to_favoriteMoviesFragment"
+            app:destination="@id/favoriteMoviesFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/splashScreenFragment"
+        android:name="com.moabo.moviedemo.view.splashScreen.SplashScreenFragment"
+        android:label="SplashScreenFragment" >
+        <action
+            android:id="@+id/action_splashScreenFragment_to_topRatedMoviesFragment"
+            app:destination="@id/topRatedMoviesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/favoriteMoviesFragment"
+        android:name="com.moabo.moviedemo.view.favoriteMovies.FavoriteMoviesFragment"
+        android:label="FavoriteMoviesFragment" >
+        <action
+            android:id="@+id/action_favoriteMoviesFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
     </fragment>
 </navigation>

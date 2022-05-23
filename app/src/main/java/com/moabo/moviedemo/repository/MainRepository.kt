@@ -18,7 +18,7 @@ class MainRepository @Inject constructor(private val apiServiceImpl: ApiServiceI
     fun getSession():Flow<SessionRS> = flow { emit(apiServiceImpl.getSession()) }
     fun getSearch(query :String):Flow<SearchMap> = flow { emit(apiServiceImpl.getSearch(query)) }
     fun getTopRatedMovies(page :Int):Flow<TopRatedMap> = flow { emit(apiServiceImpl.getTopRatedMovies(page)) }
-    fun getMovieDetail(movieId :Int):Flow<MovieDetail> = flow { emit(apiServiceImpl.getMovieDetail(movieId)) }
+    fun getMovieDetail(movieId :Int):Flow<Movie> = flow { emit(apiServiceImpl.getMovieDetail(movieId)) }
     fun rateMovie(value :RatingRQ,movieId :Int,guestSessionId :String):Flow<RatingRS> = flow { emit(apiServiceImpl.rateMovie(value,movieId,guestSessionId)) }
 
 }

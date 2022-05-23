@@ -64,5 +64,9 @@ data class Movie(
 
     @Expose
     @SerializedName("vote_count")
-    var voteCount  : Int?
+    var voteCount  : Int? ,
+
+    @Expose
+    @SerializedName("isFavorite")
+    var isFavorite  : Boolean?=false
 ): Parcelable

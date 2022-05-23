@@ -5,7 +5,7 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="@color/white"
+        android:background="@color/black"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -14,6 +14,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginEnd="20dp"
+
             app:layout_constraintEnd_toStartOf="@+id/search_title_movie"
             android:contentDescription="@string/imagemovie"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,6 +28,7 @@
             app:layout_constraintStart_toEndOf="@+id/search_image_movie"
             app:layout_constraintBottom_toTopOf="@+id/search_release_date_movie"
             tools:text="@string/app_name"
+            android:textColor="@color/white"
             style="@style/TextAppearance.Material3.BodyLarge"
             android:textSize="18sp"
             />
@@ -38,6 +40,7 @@
             app:layout_constraintTop_toBottomOf="@+id/search_title_movie"
             app:layout_constraintStart_toStartOf="@+id/search_title_movie"
             tools:text="25/02/2022"
+            android:textColor="@color/white"
             android:textSize="13sp"
            />
     </androidx.constraintlayout.widget.ConstraintLayout>

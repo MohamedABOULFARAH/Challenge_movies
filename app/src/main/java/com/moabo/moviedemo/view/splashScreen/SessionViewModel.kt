@@ -1,8 +1,8 @@
-package com.moabo.moviedemo.viewModel
+package com.moabo.moviedemo.view.splashScreen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.demo.Util.ApiState
+import com.moabo.moviedemo.utils.ApiState
 import com.moabo.moviedemo.model.session.SessionRS
 import com.moabo.moviedemo.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,13 +22,13 @@ private val _sessionStateFlow:MutableStateFlow<ApiState> = MutableStateFlow(ApiS
 
     fun getSession()=viewModelScope.launch {
 
-        _sessionStateFlow.value=ApiState.Loading
+        _sessionStateFlow.value= ApiState.Loading
         mainRepository.getSession()
             .catch {
-            _sessionStateFlow.value=ApiState.Failure(it)
+            _sessionStateFlow.value= ApiState.Failure(it)
         }
             .collect {
-            _sessionStateFlow.value=ApiState.Success(it)
+            _sessionStateFlow.value= ApiState.Success(it)
                 SessionRS.UserSession=it
         }
     }

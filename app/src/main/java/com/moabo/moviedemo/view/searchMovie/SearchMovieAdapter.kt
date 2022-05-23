@@ -4,11 +4,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.demo.Util.loadImage
+import com.moabo.moviedemo.utils.loadImage
 import com.moabo.moviedemo.databinding.SearchMovieRowBinding
 import com.moabo.moviedemo.model.movie.Movie
 
-class SearchMovieAdapter(private var searchResulsList: List<Movie>, private var onMovieClicked:(movieId:Int)->Unit) :
+class SearchMovieAdapter(private var searchResulsList: List<Movie>, private var onMovieClicked:(movie:Movie)->Unit) :
     RecyclerView.Adapter<SearchMovieAdapter.SearchMovieHolder>() {
     private lateinit var binding: SearchMovieRowBinding
 
@@ -26,7 +26,7 @@ class SearchMovieAdapter(private var searchResulsList: List<Movie>, private var 
         binding.searchReleaseDateMovie.text = item.releaseDate
         item.posterPath?.let { loadImage(it,binding.searchImageMovie) }
         holder.itemView.setOnClickListener {
-            item.id?.let { it1 -> onMovieClicked.invoke(it1) }
+            item.let { it1 -> onMovieClicked.invoke(it1) }
         }
     }
 

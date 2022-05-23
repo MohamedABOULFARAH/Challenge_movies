@@ -1,7 +1,6 @@
 package com.moabo.moviedemo.view.genreMovie
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +10,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.demo.Util.ApiState
-import com.example.demo.Util.showAlert
+import com.moabo.moviedemo.utils.ApiState
+import com.moabo.moviedemo.utils.showAlert
 import com.moabo.moviedemo.databinding.FragmentGenreMovieBinding
 import com.moabo.moviedemo.model.genre.Genre
-import com.moabo.moviedemo.viewModel.GenreViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import java.util.*

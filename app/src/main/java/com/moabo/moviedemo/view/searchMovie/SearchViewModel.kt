@@ -1,8 +1,8 @@
-package com.moabo.moviedemo.viewModel
+package com.moabo.moviedemo.view.searchMovie
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.demo.Util.ApiState
+import com.moabo.moviedemo.utils.ApiState
 import com.moabo.moviedemo.repository.MainRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:backgroundTint="@color/black"
     android:background="@color/black"
-    tools:context=".view.topRated.TopRatedMoviesFragment">
+    tools:context=".view.favoriteMovies.FavoriteMoviesFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/toolbar"
@@ -17,12 +17,12 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/titleTopRated"
+            android:id="@+id/titleFavorie"
             android:padding="5dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-light"
-            android:text="@string/top_rated"
+            android:text="@string/favorites"
             android:textColor="@color/white"
             android:textSize="25sp"
             android:layout_marginStart="10dp"
@@ -32,7 +32,7 @@
 
 
         <ImageView
-            android:id="@+id/top_rated_image_alpha_sort"
+            android:id="@+id/favorites_image_alpha_sort"
             android:layout_width="50dp"
             android:layout_height="0dp"
             android:layout_marginEnd="10dp"
@@ -40,23 +40,12 @@
             android:contentDescription="@string/image_movie_rating"
             android:src="@drawable/filter_up"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/top_rated_image_date_sort"
+            app:layout_constraintEnd_toStartOf="@+id/favorites_image_date_sort"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/AvitoPurple" />
+
         <ImageView
-            android:id="@+id/top_rated_image_favorites"
-            android:layout_width="50dp"
-            android:layout_height="0dp"
-            android:layout_marginEnd="10dp"
-            android:padding="5dp"
-            android:contentDescription="@string/image_movie_rating"
-            android:src="@drawable/rating_star"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/top_rated_image_alpha_sort"
-            app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/AvitoPurple" />
-        <ImageView
-            android:id="@+id/top_rated_image_date_sort"
+            android:id="@+id/favorites_image_date_sort"
             android:layout_width="40dp"
             android:layout_height="0dp"
             android:layout_marginEnd="20dp"
@@ -68,15 +57,15 @@
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/AvitoPurple" />
         <ImageView
-            android:id="@+id/top_rated_image_date_sort_arrow"
+            android:id="@+id/favorites_image_date_sort_arrow"
             android:layout_width="35dp"
             android:layout_height="0dp"
             android:padding="9dp"
             android:contentDescription="@string/image_movie_rating"
             android:src="@drawable/ic_baseline_arrow_up"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/top_rated_image_date_sort"
-            app:layout_constraintStart_toStartOf="@+id/top_rated_image_date_sort"
+            app:layout_constraintEnd_toEndOf="@+id/favorites_image_date_sort"
+            app:layout_constraintStart_toStartOf="@+id/favorites_image_date_sort"
             app:layout_constraintTop_toTopOf="parent"
             app:tint="@color/AvitoPurple" />
 
@@ -132,7 +121,7 @@
         android:layout_height="0dp"
         android:visibility="gone"
         android:layout_marginTop="20dp"
-        tools:visibility="visible"
+        tools:visibility="gone"
         android:background="@color/black"
         tools:listitem="@layout/search_movie_row"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,8 +1,8 @@
-package com.moabo.moviedemo.viewModel
+package com.moabo.moviedemo.view.topRated
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.demo.Util.ApiState
+import com.moabo.moviedemo.utils.ApiState
 import com.moabo.moviedemo.model.MovieDao
 import com.moabo.moviedemo.model.movie.Movie
 import com.moabo.moviedemo.repository.MainRepository
@@ -28,14 +28,19 @@ class TopRatedMoviesViewModel @Inject constructor(
     fun getTopRatedResults(page :Int) = viewModelScope.launch {
 
         _topRatedResultStateFlow.value = ApiState.Loading
-        mainRepository.getTopRatedMovies(page)
-            .catch {
-                _topRatedResultStateFlow.value = ApiState.Failure(it)
-            }
-            .collect {
-                //_topRatedResultStateFlow.value = ApiState.Success(it.results)
-                insertMovie(it.results)
-            }
+        if (movieDao.getMovies().isNotEmpty()){
+            getMovies()
+        }else{
+            mainRepository.getTopRatedMovies(page)
+                .catch {
+                    _topRatedResultStateFlow.value = ApiState.Failure(it)
+                }
+                .collect {
+                    //_topRatedResultStateFlow.value = ApiState.Success(it.results)
+                    insertMovie(it.results)
+                }
+        }
+
     }
 
     private fun insertMovie(movies: ArrayList<Movie>) = viewModelScope.launch {

@@ -8,4 +8,5 @@
     <string name="Category">Category</string>
     <string name="image_movie_rating">image movie rating</string>
     <string name="top_rated">Top Rated</string>
+    <string name="favorites">Favorites</string>
 </resources>

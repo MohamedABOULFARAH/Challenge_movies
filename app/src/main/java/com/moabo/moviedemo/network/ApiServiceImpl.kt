@@ -17,6 +17,6 @@ class ApiServiceImpl @Inject constructor(private val apiService: ApiService) {
     suspend fun getSession(): SessionRS = apiService.getSession()
     suspend fun getSearch(query :String): SearchMap = apiService.getSearch(query)
     suspend fun getTopRatedMovies(page :Int): TopRatedMap = apiService.getTopRatedMovies(page)
-    suspend fun getMovieDetail(movieId :Int): MovieDetail = apiService.getMovieDetail(movieId)
+    suspend fun getMovieDetail(movieId :Int): Movie = apiService.getMovieDetail(movieId)
     suspend fun rateMovie(value :RatingRQ,movieId :Int,guestSessionId :String): RatingRS = apiService.rateMovie(value,movieId,guestSessionId)
 }
